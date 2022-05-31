@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chicago highlights</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% if form is defined %}
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+{% else %}
+<div class="accordion" id="books">
+    <div class="accordion-item">
+        {% for bookId, highlights in bookHighlights %}
+            <h2 class="accordion-header sticky-top" id="{{ bookId }}Button">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ bookId }}" aria-expanded="true" aria-controls="{{ bookId }}">
+                    {{ highlights[0].book }}- {{ highlights[0].author }}
+                </button>
+            </h2>
+            <div id="{{ bookId }}" class="accordion-collapse collapse" aria-labelledby="{{ bookId }}Button" data-bs-parent="#books">
+                <div class="accordion-body">
+                    <div id="{{ bookId }}" class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+                        {% for highlight in highlights %}
+{#                            <input class="list-group-item-check pe-none d-none" type="checkbox" name="highlight" id="{{ highlight.id }}" value="{{ highlight.id }}">#}
+                            <label class="list-group-item rounded-3 py-3" for="{{ highlight.id }}">
+                                <figure>
+                                    <blockquote class="blockquote">
+                                        {{ highlight.text }}
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        <cite title="{{  highlight.source }}">{{  highlight.source }}</cite>
+                                    </figcaption>
+                                </figure>
+                                {% if highlight.note %}
+                                    <p class="text-bg-info bg-info">{{ highlight.note.text }}</p>
+                                {% endif %}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+</body>
+</html>

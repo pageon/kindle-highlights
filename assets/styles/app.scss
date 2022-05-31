@@ -1,0 +1,25 @@
+//@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+
+.list-group {
+  max-width: clamp(460px, 50vw, 800px);
+  margin: 0 auto;
+}
+
+.list-group-checkable .list-group-item {
+  //cursor: pointer;
+}
+
+.list-group-item-check:hover + .list-group-item {
+  background-color: var(--bs-light);
+}
+.list-group-item-check:checked + .list-group-item {
+  color: #fff;
+  background-color: var(--bs-blue);
+}
+.list-group-item-check[disabled] + .list-group-item,
+.list-group-item-check:disabled + .list-group-item {
+  pointer-events: none;
+  filter: none;
+  opacity: .5;
+}
