@@ -21,7 +21,8 @@ class ClippingsController extends AbstractController
             [
                 'label' => 'Select your <code>My Clippings.txt</code> file',
                 'label_html' => true,
-                'help' => 'This file will not be stored permanently and will only be used during this visit',
+                'help' => '<p>After connecting your kindle to your computer you can find the file on your kindle at <code>documents/My Clippings.txt</code>.</p><p>I have only tested this on the paperwhite. Should you have any issues feel free to contact me with your <code>My Clippings.txt</code> file at <a href="mailto:info@pageon.be">info@pageon.be</a></p><p class="alert alert-warning mt-3">This file will not be stored permanently and will only be used during this visit</p>',
+                'help_html' => true,
                 'attr' => ['accept' => 'text/*', 'onchange' => 'form.submit()'],
                 'constraints' => [new File(mimeTypes: ['text/*'])],
             ]
