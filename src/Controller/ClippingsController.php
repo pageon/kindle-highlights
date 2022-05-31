@@ -19,6 +19,9 @@ class ClippingsController extends AbstractController
             'clipping',
             FileType::class,
             [
+                'label' => 'Select your <code>My Clippings.txt</code> file',
+                'label_html' => true,
+                'help' => 'This file will not be stored permanently and will only be used during this visit',
                 'attr' => ['accept' => 'text/*', 'onchange' => 'form.submit()'],
                 'constraints' => [new File(mimeTypes: ['text/*'])],
             ]

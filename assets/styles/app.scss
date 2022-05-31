@@ -1,6 +1,10 @@
 //@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
+html, body {
+  height: 100%;
+}
+
 .list-group {
   max-width: clamp(460px, 50vw, 800px);
   margin: 0 auto;

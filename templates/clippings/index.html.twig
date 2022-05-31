@@ -14,10 +14,17 @@
 </head>
 <body>
 {% if form is defined %}
-    {{ form_start(form) }}
-    {{ form_rest(form) }}
-    <button class="btn btn-primary">Submit</button>
-    {{ form_end(form) }}
+    <div class="modal modal-alert position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalChoice">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-body p-4 text-center">
+                    {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% else %}
 <div class="accordion" id="books">
     <div class="accordion-item">
