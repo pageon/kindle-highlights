@@ -10,24 +10,39 @@ html, body {
   margin: 0 auto;
 }
 
+.accordion-header label {
+  height: 100%;
+}
+
 .list-group-checkable .list-group-item {
   display: flex;
 
   label {
-    cursor: pointer;
     display: block;
-    line-height: 2em;
+    width: 2em;
+    height: calc(100% + 2em);
     margin: -1rem 1rem -1rem -1rem;
     flex-shrink: 0;
-    border-top-left-radius: var(--bs-border-radius-lg);
-    border-bottom-left-radius: var(--bs-border-radius-lg);
-    color: var(--bs-white);
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 0.5em 0;
-    user-select: none;
+    position: relative;
+    &:before {
+      cursor: pointer;
+      display: block;
+      line-height: 2em;
+      border-top-left-radius: var(--bs-border-radius-lg);
+      border-bottom-left-radius: var(--bs-border-radius-lg);
+      color: var(--bs-white);
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 0.5em 0;
+      user-select: none;
+      content: 'hide';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
   }
 
   figure {
@@ -45,16 +60,23 @@ html, body {
   }
 }
 
-.list-group-item:hover label{
-  background-color: var(--bs-orange);
+.list-group-item:hover label:before{
+  background-color: var(--bs-red);
 }
 @media (hover: none) {
-  .list-group-item label{
-    background-color: var(--bs-orange);
+  .list-group-item label:before{
+    background-color: var(--bs-red);
   }
 }
-.list-group-item-check:checked + .list-group-item label {
-  background-color: var(--bs-red);
+.list-group-item-check:checked + .list-group-item:hover label:before {
+  background-color: var(--bs-green);
+  content: 'show';
+}
+@media (hover: none) {
+  .list-group-item-check:checked + .list-group-item label:before {
+    background-color: var(--bs-green);
+    content: 'show';
+  }
 }
 .toggle-selected:checked + .accordion-collapse .list-group-item-check:checked + .list-group-item {
   display: none;
