@@ -48,6 +48,11 @@ html, body {
 .list-group-item:hover label{
   background-color: var(--bs-orange);
 }
+@media (hover: none) {
+  .list-group-item label{
+    background-color: var(--bs-orange);
+  }
+}
 .list-group-item-check:checked + .list-group-item label {
   background-color: var(--bs-red);
 }
