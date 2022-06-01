@@ -41,8 +41,8 @@
                     <div id="{{ bookId }}" class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                         {% for highlight in highlights %}
                             <input class="list-group-item-check pe-none d-none" type="checkbox" name="highlight" id="{{ highlight.id }}" value="{{ highlight.id }}">
-                            <label class="list-group-item rounded-3 py-3" for="{{ highlight.id }}">
-                                <span></span>
+                            <div class="list-group-item rounded-3 py-3">
+                                <label for="{{ highlight.id }}">toggle</label>
                                 <figure>
                                     <blockquote class="blockquote">
                                         {{ highlight.text }}
@@ -54,7 +54,7 @@
                                         {% endif %}
                                     </figcaption>
                                 </figure>
-                            </label>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>

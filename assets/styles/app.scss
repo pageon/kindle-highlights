@@ -12,16 +12,22 @@ html, body {
 
 .list-group-checkable .list-group-item {
   display: flex;
-  cursor: pointer;
 
-  span{
+  label {
+    cursor: pointer;
     display: block;
-    width: 1em;
+    line-height: 2em;
     margin: -1rem 1rem -1rem -1rem;
     flex-shrink: 0;
-    height: calc(100% + 2rem);
     border-top-left-radius: var(--bs-border-radius-lg);
     border-bottom-left-radius: var(--bs-border-radius-lg);
+    color: var(--bs-white);
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.5em 0;
+    user-select: none;
   }
 
   figure {
@@ -39,12 +45,25 @@ html, body {
   }
 }
 
-.list-group-item-check:hover + .list-group-item span{
+.list-group-item:hover label{
   background-color: var(--bs-orange);
 }
-.list-group-item-check:checked + .list-group-item span {
+.list-group-item-check:checked + .list-group-item label {
   background-color: var(--bs-red);
 }
 .toggle-selected:checked + .accordion-collapse .list-group-item-check:checked + .list-group-item {
   display: none;
+}
+
+.accordion-button {
+  border-radius: 0 !important;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &.collapsed:focus,
+  &.collapsed:hover {
+    background-color: var(--bs-accordion-btn-focus-border-color);
+  }
 }
