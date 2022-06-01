@@ -29,28 +29,31 @@
 <div class="accordion" id="books">
     <div class="accordion-item">
         {% for bookId, highlights in bookHighlights %}
-            <h2 class="accordion-header sticky-top" id="{{ bookId }}Button">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ bookId }}" aria-expanded="true" aria-controls="{{ bookId }}">
+            <h2 class="accordion-header sticky-top d-flex" id="{{ bookId }}Button">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".{{ bookId }}-collapse" aria-expanded="true" aria-controls="{{ bookId }}">
                     {{ highlights[0].book }}- {{ highlights[0].author }}
                 </button>
+                <label for="selected-{{ bookId }}" class="btn btn-danger rounded-0 {{ bookId }}-collapse collapse">Hide selected</label>
             </h2>
-            <div id="{{ bookId }}" class="accordion-collapse collapse" aria-labelledby="{{ bookId }}Button" data-bs-parent="#books">
+            <input type="checkbox" id="selected-{{ bookId }}" class="d-none toggle-selected">
+            <div id="{{ bookId }}" class="accordion-collapse collapse {{ bookId }}-collapse" aria-labelledby="{{ bookId }}Button" data-bs-parent="#books">
                 <div class="accordion-body">
                     <div id="{{ bookId }}" class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
                         {% for highlight in highlights %}
-{#                            <input class="list-group-item-check pe-none d-none" type="checkbox" name="highlight" id="{{ highlight.id }}" value="{{ highlight.id }}">#}
+                            <input class="list-group-item-check pe-none d-none" type="checkbox" name="highlight" id="{{ highlight.id }}" value="{{ highlight.id }}">
                             <label class="list-group-item rounded-3 py-3" for="{{ highlight.id }}">
+                                <span></span>
                                 <figure>
                                     <blockquote class="blockquote">
                                         {{ highlight.text }}
                                     </blockquote>
                                     <figcaption class="blockquote-footer">
                                         <cite title="{{  highlight.source }}">{{  highlight.source }}</cite>
+                                        {% if highlight.note %}
+                                            <p class="alert alert-info">{{ highlight.note.text }}</p>
+                                        {% endif %}
                                     </figcaption>
                                 </figure>
-                                {% if highlight.note %}
-                                    <p class="alert alert-info">{{ highlight.note.text }}</p>
-                                {% endif %}
                             </label>
                         {% endfor %}
                     </div>

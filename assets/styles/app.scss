@@ -11,19 +11,40 @@ html, body {
 }
 
 .list-group-checkable .list-group-item {
-  //cursor: pointer;
+  display: flex;
+  cursor: pointer;
+
+  span{
+    display: block;
+    width: 1em;
+    margin: -1rem 1rem -1rem -1rem;
+    flex-shrink: 0;
+    height: calc(100% + 2rem);
+    border-top-left-radius: var(--bs-border-radius-lg);
+    border-bottom-left-radius: var(--bs-border-radius-lg);
+  }
+
+  figure {
+    margin: 0 1em 0 0;
+
+    figcaption {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      .alert {
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
-.list-group-item-check:hover + .list-group-item {
-  background-color: var(--bs-light);
+.list-group-item-check:hover + .list-group-item span{
+  background-color: var(--bs-orange);
 }
-.list-group-item-check:checked + .list-group-item {
-  color: #fff;
-  background-color: var(--bs-blue);
+.list-group-item-check:checked + .list-group-item span {
+  background-color: var(--bs-red);
 }
-.list-group-item-check[disabled] + .list-group-item,
-.list-group-item-check:disabled + .list-group-item {
-  pointer-events: none;
-  filter: none;
-  opacity: .5;
+.toggle-selected:checked + .accordion-collapse .list-group-item-check:checked + .list-group-item {
+  display: none;
 }
