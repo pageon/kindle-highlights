@@ -54,6 +54,9 @@ html, body {
 .toggle-selected:checked + .accordion-collapse .list-group-item-check:checked + .list-group-item {
   display: none;
 }
+.toggle-selected:not(:checked) + .accordion-collapse .list-group-item-check:not(:checked) + .list-group-item {
+  display: none;
+}
 
 .accordion-button {
   border-radius: 0 !important;
