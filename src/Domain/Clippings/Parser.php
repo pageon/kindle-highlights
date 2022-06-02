@@ -17,7 +17,7 @@ final class Parser
             }
             $note = $clip->type === Type::NOTE ? $clip : null;
             if ($note === null) {
-                $clippings[$clip->book][] = $clip;
+                $clippings[$clip->bookId][] = $clip;
             }
         }
 
