@@ -12,7 +12,7 @@ final class Clipping
 
     public function __construct(
         public readonly Type $type,
-        public readonly string $location,
+        public readonly ?string $location,
         public readonly ?string $page,
         public readonly string $book,
         public readonly string $author,
