@@ -9,15 +9,18 @@ final class Parser
     {
         $clips = explode('==========', file_get_contents($path));
         $clippings = [];
-        $note = null;
+        $highlight = null;
         foreach ($clips as $string) {
-            $clip = Clipping::fromString($string, $note);
+            $clip = Clipping::fromString($string);
             if ($clip === null) {
                 continue;
             }
             $note = $clip->type === Type::NOTE ? $clip : null;
-            if ($note === null) {
+            if ($note instanceof Clipping) {
+                $highlight->note = $note;
+            } else {
                 $clippings[$clip->bookId][] = $clip;
+                $highlight = $clip;
             }
         }
 

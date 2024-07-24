@@ -9,6 +9,7 @@ final class Clipping
     public readonly string $id;
     public readonly string $bookId;
     public readonly string $source;
+    public ?self $note = null;
 
     public function __construct(
         public readonly Type $type,
@@ -17,15 +18,14 @@ final class Clipping
         public readonly string $book,
         public readonly string $author,
         public readonly string $text,
-        public readonly DateTimeImmutable $createdOn,
-        public readonly ?self $note
+        public readonly DateTimeImmutable $createdOn
     ) {
         $this->id = 'c' . hash('xxh128', serialize($this));
         $this->bookId = 'b' . hash('xxh128', $this->book . ' - ' . $this->author);
         $this->source = $this->buildSource();
     }
 
-    public static function fromString(string $clipping, ?self $note): ?self
+    public static function fromString(string $clipping): ?self
     {
         $clipping = trim($clipping);
         $parts = [];
@@ -44,8 +44,7 @@ final class Clipping
             trim($parts[1]),
             trim(str_replace(';', '', $parts[2])),
             trim($parts[7]),
-            DateTimeImmutable::createFromFormat('j F Y H:i:s', $parts[6]),
-            $note
+            DateTimeImmutable::createFromFormat('j F Y H:i:s', $parts[6])
         );
     }
 
